@@ -1,0 +1,21 @@
+---
+title: "Fixing GoHighLevel Merge Tag Mismatches Before They Cost You a Client"
+slug: "fixing-merge-tag-mismatches"
+description: "The single most common cause of silently-failing GHL workflows, and the audit process that catches it before it reaches a customer."
+publishedAt: "2026-06-10"
+author: "chris"
+platform: "gohighlevel"
+platformName: "GoHighLevel"
+---
+
+A workflow that references a custom field by the wrong name doesn't throw an error in GoHighLevel — it just doesn't fire. That silence is what makes this the most expensive class of bug in a GHL build.
+
+<OperatorNote>
+Standard audit before any workflow ships: pull one real contact record, walk it through the workflow manually, and confirm every "Update contact field" step actually wrote what you expected. Five minutes of manual QA catches what a code review can't.
+</OperatorNote>
+
+## The fix
+
+1. Centralize custom field names in one reference doc — don't let field names get typed fresh in every workflow.
+2. QA every "Update contact field" action against a live test contact before activating a workflow.
+3. Add a Slack alert on workflow errors so failures surface immediately instead of showing up as a customer complaint three weeks later.
