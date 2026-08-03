@@ -41,9 +41,17 @@ export interface CompareFrontmatter extends BaseFrontmatter {
   compareB: string;
 }
 
+export interface SlideshowSlide {
+  eyebrow?: string;
+  title: string;
+  body: string;
+  stat?: string;
+}
+
 export interface BuildFrontmatter extends BaseFrontmatter {
   summary: string;
   stack?: string[];
+  slideshow?: SlideshowSlide[];
 }
 
 export interface ContentEntry<T extends BaseFrontmatter = BaseFrontmatter> {

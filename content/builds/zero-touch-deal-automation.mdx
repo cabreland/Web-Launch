@@ -1,0 +1,64 @@
+---
+title: "Zero-Touch Deal Automation: From First Seller Call to Signed Listing"
+slug: "zero-touch-deal-automation"
+description: "An event-driven system that takes a national M&A brokerage from first seller call to a signed listing agreement, a fully built data room, and live client portal access - with no manual handoffs in between."
+publishedAt: "2026-07-28"
+author: "chris"
+summary: "Event-driven automation connecting call intelligence, CRM, e-signature, data rooms, team notifications, and client portal access into one zero-touch deal pipeline."
+stack: ["CRM automation", "AI call intelligence", "E-signature", "Automated data rooms", "Client portal", "Team notifications"]
+slideshow:
+  - eyebrow: "The Build"
+    title: "Zero-touch, call to signed listing"
+    body: "One event-driven system replaces what used to be six separate manual handoffs between the first seller call and a fully onboarded client."
+  - eyebrow: "Step 1"
+    title: "The call becomes structured data automatically"
+    body: "Every seller call is recorded and transcribed. An AI extraction layer pulls a dozen-plus deal fields - revenue, EBITDA, asking price, reason for selling - straight from the transcript. No one re-types a number."
+    stat: "~10 min: call ends to deal card ready for team review"
+  - eyebrow: "Step 2"
+    title: "One approval, and the CRM updates itself"
+    body: "A single team reaction on the reviewed deal card pushes the extracted data into the CRM, assigns an owner, and advances the pipeline stage automatically."
+    stat: "~5 min: approval to CRM fully updated"
+  - eyebrow: "Step 3"
+    title: "The listing agreement sends itself - correctly"
+    body: "The moment a deal is marked ready, the system checks that every required field is present, then sends the listing agreement out for e-signature. Missing something? The team gets flagged before the document ever goes out."
+    stat: "~5 sec: stage change to signature request sent"
+  - eyebrow: "Step 4"
+    title: "One signature triggers the entire onboarding chain"
+    body: "The instant the agreement is fully signed, the deal is marked won, a structured data room builds itself, a dedicated team channel spins up, and the client's portal access provisions automatically. No one touches a folder or sends a welcome email."
+    stat: "~2 min: signature to fully onboarded client"
+  - eyebrow: "The Outcome"
+    title: "What used to take a team most of a day now takes minutes"
+    body: "Six manual handoffs per deal became zero. The team spends its time on the calls and the deals - not the paperwork in between them."
+faq:
+  - q: "Does this replace the broker's judgment on a deal?"
+    a: "No - it replaces the busywork around the deal, not the deal itself. Every step that requires judgment (approving a lead, deciding a deal is ready to list) still has a human in the loop. The system just removes everything that doesn't need a human: re-typing data, formatting documents, creating folders, sending welcome emails."
+  - q: "What happens if a required field is missing when a document should go out?"
+    a: "The system catches it before anything sends. Missing data triggers an internal alert instead of a broken or incomplete document going out to a client - a small design choice that avoids the most common failure mode in automations like this."
+---
+
+Most brokerages don't have an automation problem. They have a translation problem - the same information gets re-typed, reformatted, and re-explained at every handoff between a call, a CRM, a signed document, and a client's first login.
+
+<OperatorNote>
+The unlock here wasn't any single integration - GoHighLevel, BoldSign, and a Slack bot all existed before this build. The unlock was making them event-driven instead of task-driven: nobody has to remember to do the next step, because the previous step's completion *is* the trigger.
+</OperatorNote>
+
+## What the system actually does
+
+A seller call happens. From there, everything downstream fires on its own:
+
+- The call is recorded, transcribed, and run through an AI extraction layer that pulls the deal's core financials and qualitative details straight out of the conversation - no one listens back and types notes.
+- A single team approval pushes that data into the CRM, assigns an owner, and advances the deal's pipeline stage.
+- When a deal is marked ready to list, the system validates that every required field is actually present, then sends the listing agreement for e-signature automatically. If something's missing, the team gets flagged instead of a broken document going out.
+- The moment the agreement is fully signed, the deal is marked won, a structured data room is created and populated with the signed agreement, a dedicated team channel is spun up, and the client is automatically provisioned into a portal with access scoped to their specific deal.
+
+## Where the leverage actually shows up
+
+The honest measure of a build like this isn't the tech stack, it's the latency between a human decision and the system finishing the resulting busywork. In production, that latency runs from a few seconds to a couple of minutes at every step - versus what used to be an afternoon of manual document handling, folder creation, and status updates spread across a team.
+
+<OperatorNote>
+The failure mode we designed hardest against wasn't "the automation doesn't fire." It was "the automation fires with bad data." Every trigger that touches a client-facing document validates its inputs first and fails loud internally rather than sending something wrong.
+</OperatorNote>
+
+## The result
+
+The brokerage went from a deal pipeline that depended on someone remembering eleven manual steps to one that depends on nothing but the calls themselves. That's the actual point of automation in a services business - not replacing the people doing the deals, just removing everything around the deal that was never a good use of their time.

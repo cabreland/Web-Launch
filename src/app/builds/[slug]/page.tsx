@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getBuilds, getBuild } from "@/lib/content";
 import { MdxContent } from "@/components/mdx/MdxContent";
 import { AuthorByline } from "@/components/ui/AuthorByline";
+import { BuildSlideshow } from "@/components/ui/BuildSlideshow";
 import { articleJsonLd, jsonLdScript } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -58,6 +59,10 @@ export default function BuildPage({ params }: { params: { slug: string } }) {
           readingTime={entry.readingTime}
         />
       </div>
+      {entry.frontmatter.slideshow && entry.frontmatter.slideshow.length > 0 && (
+        <BuildSlideshow slides={entry.frontmatter.slideshow} />
+      )}
+
       <div className="mt-8">
         <MdxContent source={entry.content} />
       </div>
