@@ -85,6 +85,13 @@ export const clusterLabels: Record<string, string> = {
   "acquisition-finance": "Acquisition Finance",
 };
 
+export const clusterColors: Record<string, { text: string; bg: string; dot: string }> = {
+  "ai-automation": { text: "text-sky", bg: "bg-sky/10", dot: "bg-sky" },
+  "business-systems": { text: "text-accent", bg: "bg-accent/10", dot: "bg-accent" },
+  "exit-readiness": { text: "text-sky-light", bg: "bg-sky-light/10", dot: "bg-sky-light" },
+  "acquisition-finance": { text: "text-accent-light", bg: "bg-accent-light/10", dot: "bg-accent-light" },
+};
+
 export const clusterDescriptions: Record<string, string> = {
   "ai-automation":
     "Workflow automation, AI-powered operations, and systems integration for founders who'd rather build leverage than headcount.",

@@ -4,7 +4,7 @@ import { ArticleCard } from "@/components/ui/ArticleCard";
 import { CtaBlock } from "@/components/ui/CtaBlock";
 import { NewsletterForm } from "@/components/ui/NewsletterForm";
 import { HeroGraphic } from "@/components/ui/HeroGraphic";
-import { clusterLabels, clusterDescriptions } from "@/lib/site";
+import { clusterLabels, clusterDescriptions, clusterColors } from "@/lib/site";
 
 export default function HomePage() {
   const articles = getLearnArticles().slice(0, 3);
@@ -106,7 +106,8 @@ export default function HomePage() {
               href={`/learn/${slug}`}
               className="rounded-lg border border-mid/15 bg-white p-6 transition hover:border-sky/40"
             >
-              <h3 className="font-display text-lg font-semibold text-ink">{label}</h3>
+              <span className={`inline-block h-2.5 w-2.5 rounded-full ${clusterColors[slug]?.dot}`} />
+              <h3 className="mt-3 font-display text-lg font-semibold text-ink">{label}</h3>
               <p className="mt-2 text-sm leading-relaxed text-mid">{clusterDescriptions[slug]}</p>
             </Link>
           ))}
@@ -128,6 +129,7 @@ export default function HomePage() {
                 key={a.frontmatter.slug}
                 href={`/learn/${a.frontmatter.cluster}/${a.frontmatter.slug}`}
                 eyebrow={clusterLabels[a.frontmatter.cluster]}
+                eyebrowColorClass={clusterColors[a.frontmatter.cluster]?.text}
                 title={a.frontmatter.title}
                 description={a.frontmatter.description}
                 meta={a.readingTime}

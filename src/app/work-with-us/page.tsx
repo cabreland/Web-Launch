@@ -12,7 +12,7 @@ const services = [
     name: "Custom Build",
     status: "Available",
     description:
-      "AI automation, systems integration, and software builds scoped around a specific operational problem — not a generic package.",
+      "AI automation, systems integration, and software builds scoped around a specific operational bottleneck — not a generic package.",
   },
   {
     name: "Community",
@@ -39,7 +39,7 @@ export default function WorkWithUsPage() {
       </h1>
       <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-mid">
         We&apos;re selective about custom build engagements — the goal is a small number of
-        builds done right, not a volume agency model.
+        builds that actually remove a bottleneck, not a volume agency model.
       </p>
 
       <div className="mt-12 space-y-5">
@@ -51,7 +51,7 @@ export default function WorkWithUsPage() {
                 className={`rounded-full px-3 py-1 font-mono text-[11px] uppercase tracking-wide ${
                   s.status === "Available"
                     ? "bg-sky/10 text-sky"
-                    : "bg-mid/10 text-mid"
+                    : "bg-accent/10 text-accent"
                 }`}
               >
                 {s.status}

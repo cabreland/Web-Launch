@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getClusters, getLearnArticlesByCluster } from "@/lib/content";
 import { ArticleCard } from "@/components/ui/ArticleCard";
-import { clusterLabels, clusterDescriptions } from "@/lib/site";
+import { clusterLabels, clusterDescriptions, clusterColors } from "@/lib/site";
 
 export function generateStaticParams() {
   return getClusters().map((cluster) => ({ cluster }));
@@ -29,7 +29,11 @@ export default function ClusterPage({ params }: { params: { cluster: string } })
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-16">
-      <span className="font-mono text-[11px] font-semibold uppercase tracking-widest text-sky">
+      <span
+        className={`font-mono text-[11px] font-semibold uppercase tracking-widest ${
+          clusterColors[params.cluster]?.text ?? "text-sky"
+        }`}
+      >
         Learn
       </span>
       <h1 className="mt-3 font-display text-4xl font-semibold text-ink">{label}</h1>
