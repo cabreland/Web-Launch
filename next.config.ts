@@ -1,6 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Every route reads MDX content off disk via fs.readFileSync at request
+  // time (see src/lib/content.ts). Next's automatic file tracing can't see
+  // those reads to know it should bundle them into each route's serverless
+  // function - without this, pages render fine at build time (content is on
+  // disk during the build) but 404 once Vercel invalidates the static cache
+  // and re-invokes the function, because content/ isn't in that function's
+  // bundle. This forces it into every route's trace.
+  outputFileTracingIncludes: {
+    "/**": ["./content/**/*"],
+  },
   async redirects() {
     return [
       // Old Wix contractor-SEO pages — all collapse to homepage
