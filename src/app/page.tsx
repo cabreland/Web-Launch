@@ -3,6 +3,7 @@ import { getLearnArticles, getBuilds } from "@/lib/content";
 import { ArticleCard } from "@/components/ui/ArticleCard";
 import { CtaBlock } from "@/components/ui/CtaBlock";
 import { NewsletterForm } from "@/components/ui/NewsletterForm";
+import { HeroGraphic } from "@/components/ui/HeroGraphic";
 import { clusterLabels, clusterDescriptions } from "@/lib/site";
 
 export default function HomePage() {
@@ -12,33 +13,50 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <section className="mx-auto max-w-6xl px-6 pb-20 pt-20 sm:pt-28">
-        <span className="font-mono text-[11px] font-semibold uppercase tracking-widest text-sky">
-          Operator-led, not agency-written
-        </span>
-        <h1 className="mt-4 max-w-3xl font-display text-4xl font-semibold leading-tight text-ink sm:text-5xl">
-          AI automation, business systems, and exit readiness — from someone who&apos;s built,
-          bought, and sold.
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-mid">
-          WebLaunch is where Christopher Breland writes about what actually works: workflow
-          automation, operating systems, acquisition finance, and the operational groundwork that
-          makes a business transferable. Built from real deals and real builds, not a content
-          calendar.
-        </p>
-        <div className="mt-8 flex flex-wrap gap-4">
-          <Link
-            href="/work-with-us"
-            className="rounded-md bg-sky px-6 py-3 text-sm font-medium text-white transition hover:bg-sky-light"
-          >
-            Work With Us
-          </Link>
-          <Link
-            href="/learn"
-            className="rounded-md border border-mid/25 px-6 py-3 text-sm font-medium text-ink transition hover:border-sky/50"
-          >
-            Browse the guides
-          </Link>
+      <section className="relative overflow-hidden">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -left-32 -top-40 h-[420px] w-[420px] rounded-full bg-sky/20 blur-[110px]"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -right-24 top-10 h-[380px] w-[380px] rounded-full bg-accent/20 blur-[110px]"
+        />
+
+        <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-6 pb-20 pt-20 sm:pt-28 lg:grid-cols-[1.1fr_0.9fr]">
+          <div>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-widest text-sky">
+              Operator-led, not agency-written
+            </span>
+            <h1 className="mt-4 max-w-xl font-display text-4xl font-semibold leading-tight text-ink sm:text-5xl">
+              Most businesses don&apos;t have a growth problem. They have an operations problem.
+            </h1>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-mid">
+              We&apos;re operators, not consultants — people who&apos;ve run properties, built and
+              sold companies, and lived inside the systems that make or break a growing business.
+              WebLaunch is where we break down the bottlenecks that slow operationally complex
+              businesses down, and the automation, integrations, and operating systems that fix
+              them.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link
+                href="/work-with-us"
+                className="rounded-md bg-sky px-6 py-3 text-sm font-medium text-white transition hover:bg-sky-light"
+              >
+                Work With Us
+              </Link>
+              <Link
+                href="/learn"
+                className="rounded-md border border-mid/25 px-6 py-3 text-sm font-medium text-ink transition hover:border-sky/50"
+              >
+                Browse the guides
+              </Link>
+            </div>
+          </div>
+
+          <div className="hidden lg:block" aria-hidden="true">
+            <HeroGraphic />
+          </div>
         </div>
       </section>
 
@@ -48,10 +66,19 @@ export default function HomePage() {
           <h2 className="font-display text-2xl font-semibold text-ink">Who this is for</h2>
           <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-3">
             <div>
+              <h3 className="font-display text-base font-semibold text-ink">
+                Property, Construction &amp; Field Service
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-mid">
+                Managing crews, sites, or properties where visibility and coordination break down
+                the moment you scale past a spreadsheet.
+              </p>
+            </div>
+            <div>
               <h3 className="font-display text-base font-semibold text-ink">Founders & Operators</h3>
               <p className="mt-2 text-sm leading-relaxed text-mid">
-                Running a business and looking for practical AI automation and systems that
-                actually hold up in production.
+                Running a business that works fine when you&apos;re in the room — and stalls the
+                moment you&apos;re not.
               </p>
             </div>
             <div>
@@ -61,13 +88,6 @@ export default function HomePage() {
                 structuring and financing mechanics.
               </p>
             </div>
-            <div>
-              <h3 className="font-display text-base font-semibold text-ink">Builders</h3>
-              <p className="mt-2 text-sm leading-relaxed text-mid">
-                Evaluating platforms, automation stacks, and software decisions for a growing
-                operation.
-              </p>
-            </div>
           </div>
         </div>
       </section>
@@ -75,6 +95,10 @@ export default function HomePage() {
       {/* Clusters */}
       <section className="mx-auto max-w-6xl px-6 py-16">
         <h2 className="font-display text-2xl font-semibold text-ink">Four content clusters</h2>
+        <p className="mt-2 max-w-xl text-sm leading-relaxed text-mid">
+          Whatever&apos;s slowing you down — reporting, headcount, tech debt, deal terms — it
+          usually traces back to one of these four areas.
+        </p>
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
           {Object.entries(clusterLabels).map(([slug, label]) => (
             <Link
@@ -155,8 +179,8 @@ export default function HomePage() {
       <section className="mx-auto max-w-6xl px-6 pb-24">
         <CtaBlock
           eyebrow="Work With Us"
-          title="Building something and need it done right the first time?"
-          description="Custom builds, a community for implementers, and marketing services on the way."
+          title="Hit an operational bottleneck you can't work around?"
+          description="We build the automation, integrations, and systems that remove it — plus a community for implementers and marketing services on the way."
           primaryLabel="Work With Us"
           primaryHref="/work-with-us"
           secondaryLabel="Explore the community"

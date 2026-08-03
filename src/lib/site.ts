@@ -3,7 +3,7 @@ export const siteConfig = {
   shortName: "WebLaunch",
   url: "https://weblaunch.io",
   description:
-    "Practitioner-led guides on AI automation, business operating systems, acquisition entrepreneurship, and enterprise-value creation — from an operator who has built, bought, and exited.",
+    "Practitioner-led guides on AI automation, business operating systems, acquisition entrepreneurship, and enterprise-value creation — from a team that has built, bought, operated, and exited.",
   twitter: "@weblaunchio",
 } as const;
 
