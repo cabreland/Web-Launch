@@ -9,14 +9,20 @@ export function generateStaticParams() {
   return getIndustries().map((e) => ({ industry: e.frontmatter.industry }));
 }
 
-export function generateMetadata({ params }: { params: { industry: string } }): Metadata {
-  const entry = getIndustry(params.industry);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ industry: string }>;
+}): Promise<Metadata> {
+  const { industry } = await params;
+  const entry = getIndustry(industry);
   if (!entry) return {};
   return { title: entry.frontmatter.industryName, description: entry.frontmatter.description };
 }
 
-export default function IndustryPage({ params }: { params: { industry: string } }) {
-  const entry = getIndustry(params.industry);
+export default async function IndustryPage({ params }: { params: Promise<{ industry: string }> }) {
+  const { industry } = await params;
+  const entry = getIndustry(industry);
   if (!entry) notFound();
 
   return (
@@ -27,7 +33,7 @@ export default function IndustryPage({ params }: { params: { industry: string } 
           articleJsonLd({
             title: entry.frontmatter.title,
             description: entry.frontmatter.description,
-            url: `/industries/${params.industry}`,
+            url: `/industries/${industry}`,
             datePublished: entry.frontmatter.publishedAt,
             authorKey: entry.frontmatter.author,
           })

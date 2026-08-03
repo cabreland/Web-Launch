@@ -10,14 +10,20 @@ export function generateStaticParams() {
   return getBuilds().map((b) => ({ slug: b.frontmatter.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const entry = getBuild(params.slug);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const entry = getBuild(slug);
   if (!entry) return {};
   return { title: entry.frontmatter.title, description: entry.frontmatter.description };
 }
 
-export default function BuildPage({ params }: { params: { slug: string } }) {
-  const entry = getBuild(params.slug);
+export default async function BuildPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const entry = getBuild(slug);
   if (!entry) notFound();
 
   return (
@@ -28,7 +34,7 @@ export default function BuildPage({ params }: { params: { slug: string } }) {
           articleJsonLd({
             title: entry.frontmatter.title,
             description: entry.frontmatter.description,
-            url: `/builds/${params.slug}`,
+            url: `/builds/${slug}`,
             datePublished: entry.frontmatter.publishedAt,
             authorKey: entry.frontmatter.author,
           })

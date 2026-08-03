@@ -14,12 +14,13 @@ export function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
-  params: { cluster: string; slug: string };
-}): Metadata {
-  const entry = getLearnArticle(params.cluster, params.slug);
+  params: Promise<{ cluster: string; slug: string }>;
+}): Promise<Metadata> {
+  const { cluster, slug } = await params;
+  const entry = getLearnArticle(cluster, slug);
   if (!entry) return {};
   return {
     title: entry.frontmatter.title,
@@ -28,15 +29,16 @@ export function generateMetadata({
   };
 }
 
-export default function LearnArticlePage({
+export default async function LearnArticlePage({
   params,
 }: {
-  params: { cluster: string; slug: string };
+  params: Promise<{ cluster: string; slug: string }>;
 }) {
-  const entry = getLearnArticle(params.cluster, params.slug);
+  const { cluster, slug } = await params;
+  const entry = getLearnArticle(cluster, slug);
   if (!entry) notFound();
 
-  const url = `/learn/${params.cluster}/${params.slug}`;
+  const url = `/learn/${cluster}/${slug}`;
 
   return (
     <article className="mx-auto max-w-3xl px-6 py-16">
@@ -61,7 +63,7 @@ export default function LearnArticlePage({
       )}
 
       <span className="font-mono text-[11px] font-semibold uppercase tracking-widest text-sky">
-        {clusterLabels[params.cluster]}
+        {clusterLabels[cluster]}
       </span>
       <h1 className="mt-3 font-display text-3xl font-semibold text-ink sm:text-4xl">
         {entry.frontmatter.title}

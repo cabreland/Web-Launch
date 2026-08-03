@@ -9,16 +9,26 @@ export function generateStaticParams() {
   return getPlatforms().map((platform) => ({ platform }));
 }
 
-export function generateMetadata({ params }: { params: { platform: string } }): Metadata {
-  const overview = getPlatformOverview(params.platform);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ platform: string }>;
+}): Promise<Metadata> {
+  const { platform } = await params;
+  const overview = getPlatformOverview(platform);
   if (!overview) return {};
   return { title: overview.frontmatter.platformName, description: overview.frontmatter.description };
 }
 
-export default function PlatformOverviewPage({ params }: { params: { platform: string } }) {
-  const overview = getPlatformOverview(params.platform);
+export default async function PlatformOverviewPage({
+  params,
+}: {
+  params: Promise<{ platform: string }>;
+}) {
+  const { platform } = await params;
+  const overview = getPlatformOverview(platform);
   if (!overview) notFound();
-  const articles = getPlatformArticles(params.platform);
+  const articles = getPlatformArticles(platform);
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-16">
@@ -28,7 +38,7 @@ export default function PlatformOverviewPage({ params }: { params: { platform: s
           articleJsonLd({
             title: overview.frontmatter.title,
             description: overview.frontmatter.description,
-            url: `/platforms/${params.platform}`,
+            url: `/platforms/${platform}`,
             datePublished: overview.frontmatter.publishedAt,
             authorKey: overview.frontmatter.author,
           })
@@ -51,7 +61,7 @@ export default function PlatformOverviewPage({ params }: { params: { platform: s
             {articles.map((a) => (
               <ArticleCard
                 key={a.frontmatter.slug}
-                href={`/platforms/${params.platform}/${a.frontmatter.slug}`}
+                href={`/platforms/${platform}/${a.frontmatter.slug}`}
                 title={a.frontmatter.title}
                 description={a.frontmatter.description}
                 meta={a.readingTime}

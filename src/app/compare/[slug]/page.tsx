@@ -10,14 +10,20 @@ export function generateStaticParams() {
   return getCompares().map((e) => ({ slug: e.frontmatter.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const entry = getCompare(params.slug);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const entry = getCompare(slug);
   if (!entry) return {};
   return { title: entry.frontmatter.title, description: entry.frontmatter.description };
 }
 
-export default function ComparePage({ params }: { params: { slug: string } }) {
-  const entry = getCompare(params.slug);
+export default async function ComparePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const entry = getCompare(slug);
   if (!entry) notFound();
 
   return (
@@ -28,7 +34,7 @@ export default function ComparePage({ params }: { params: { slug: string } }) {
           articleJsonLd({
             title: entry.frontmatter.title,
             description: entry.frontmatter.description,
-            url: `/compare/${params.slug}`,
+            url: `/compare/${slug}`,
             datePublished: entry.frontmatter.publishedAt,
             authorKey: entry.frontmatter.author,
           })
