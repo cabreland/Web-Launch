@@ -4,6 +4,7 @@ import { ArticleCard } from "@/components/ui/ArticleCard";
 import { CtaBlock } from "@/components/ui/CtaBlock";
 import { NewsletterForm } from "@/components/ui/NewsletterForm";
 import { HeroGraphic } from "@/components/ui/HeroGraphic";
+import { LogoMarquee } from "@/components/ui/LogoMarquee";
 import { clusterLabels, clusterColors } from "@/lib/site";
 
 // Homepage-only reframe of the four clusters around outcomes. The shared
@@ -120,6 +121,9 @@ export default function HomePage() {
           </p>
         </div>
       </section>
+
+      {/* Logo marquee — earlier work, not systems-architecture clients */}
+      <LogoMarquee />
 
       {/* Who this is for */}
       <section className="border-b border-mid/10 bg-white">
