@@ -48,24 +48,24 @@ const LOGOS: MarqueeLogo[] = [
 
 export function LogoMarquee() {
   return (
-    <section aria-labelledby="client-experience-heading" className="relative overflow-hidden bg-ink">
+    <section aria-labelledby="client-experience-heading" className="relative overflow-hidden border-b border-ink/10 bg-white">
       <div
         aria-hidden
-        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-sky-light/50 to-transparent"
+        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-sky/35 to-transparent"
       />
 
-      <div className="mx-auto max-w-6xl px-6 pb-12 pt-10 sm:pb-14 sm:pt-12">
+      <div className="mx-auto max-w-6xl px-6 pb-10 pt-9 sm:pb-12 sm:pt-10">
         <div className="flex flex-col items-center gap-2 text-center sm:flex-row sm:justify-between sm:text-left">
           <h2
             id="client-experience-heading"
-            className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-sky-light"
+            className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-sky"
           >
-            Selected client experience
+            Experience across complex operations
           </h2>
-          <p className="text-xs text-paper/45">Brands that have trusted Web Launch</p>
+          <p className="text-xs text-mid">Organizations our team has supported</p>
         </div>
 
-        <div className="logo-marquee-mask group mt-9 overflow-hidden sm:mt-10">
+        <div className="logo-marquee-mask group mt-8 overflow-hidden">
           <div className="logo-marquee-track flex w-max items-center group-hover:[animation-play-state:paused]">
             {[0, 1].map((copyIndex) => (
               <div
@@ -80,7 +80,7 @@ export function LogoMarquee() {
                       alt={copyIndex === 0 ? logo.alt : ""}
                       width={logo.width}
                       height={logo.height}
-                      className={`${logo.className} w-auto max-w-full object-contain brightness-0 invert opacity-55 transition-opacity duration-300 group-hover:opacity-75`}
+                      className={`${logo.className} w-auto max-w-full object-contain grayscale opacity-45 transition-[filter,opacity] duration-300 group-hover:grayscale-0 group-hover:opacity-70`}
                     />
                   </div>
                 ))}

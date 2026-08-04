@@ -9,15 +9,36 @@ import { clusterLabels, clusterColors } from "@/lib/site";
 
 // Homepage-only reframe of the four clusters around outcomes. The shared
 // clusterDescriptions in lib/site.ts (used on /learn) are left untouched.
-const leverageStackDescriptions: Record<string, string> = {
-  "ai-automation": "Automate repetitive work and connect the tools your team already uses.",
-  "business-systems":
-    "Create repeatable execution through clear workflows, ownership, SOPs, and operating rhythms.",
-  "exit-readiness":
-    "Reduce owner dependence and build a company another operator can confidently inherit.",
-  "acquisition-finance":
-    "Understand the structure, financing, and operating assumptions behind a successful transaction.",
-};
+const operatingPriorities = [
+  {
+    slug: "ai-automation",
+    number: "01",
+    title: "Revenue workflow",
+    problem: "Completed work, signed deals, or customer requests stall between teams and systems.",
+    outcome: "Move work cleanly from completion to billing, follow-up, and collected cash.",
+  },
+  {
+    slug: "business-systems",
+    number: "02",
+    title: "Operational control",
+    problem: "Reporting is late, ownership is unclear, and exceptions surface after they become expensive.",
+    outcome: "Give every handoff an owner and leadership a reliable view of what needs attention.",
+  },
+  {
+    slug: "exit-readiness",
+    number: "03",
+    title: "Owner independence",
+    problem: "Approvals, customer knowledge, and critical decisions still route through the founder.",
+    outcome: "Build repeatable execution that does not depend on the owner being in every conversation.",
+  },
+  {
+    slug: "acquisition-finance",
+    number: "04",
+    title: "Transaction readiness",
+    problem: "The numbers may look good, but the operation is difficult for a buyer or new leader to inherit.",
+    outcome: "Create cleaner reporting, transferable processes, and defensible operating assumptions.",
+  },
+];
 
 // Pull the real "before / built / result" narrative out of a build's MDX body
 // rather than inventing case-study copy. Grounded in what's actually written.
@@ -66,19 +87,19 @@ export default function HomePage() {
         />
 
         <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-6 pb-12 pt-14 sm:gap-12 sm:pb-20 sm:pt-24 lg:grid-cols-[1.1fr_0.9fr] lg:pt-28">
-          <div>
+          <div className="min-w-0 w-full max-w-[calc(100vw-3rem)] overflow-hidden sm:max-w-none">
             <span className="font-mono text-[11px] font-semibold uppercase tracking-widest text-sky">
               Operator-led systems strategy &amp; architecture
             </span>
-            <h1 className="mt-4 max-w-xl font-display text-4xl font-semibold leading-tight text-ink sm:text-5xl">
+            <h1 className="mt-4 max-w-full break-words font-display text-4xl font-semibold leading-tight text-ink sm:max-w-xl sm:text-5xl">
               Growth exposes every system your business was never built to handle.
             </h1>
-            <p className="mt-4 max-w-xl text-lg leading-relaxed text-mid sm:mt-6">
+            <p className="mt-4 max-w-full break-words text-lg leading-relaxed text-mid sm:mt-6 sm:max-w-xl">
               We design the operating systems, workflows, integrations, and technical
-              architecture that help operationally complex businesses scale — without adding
+              architecture that help operationally complex businesses scale &mdash; without adding
               chaos, brittle tools, or dependence on the owner.
             </p>
-            <div className="mt-6 flex flex-wrap gap-4 sm:mt-8">
+            <div className="mt-6 flex flex-col items-start gap-4 sm:mt-8 sm:flex-row sm:flex-wrap">
               <Link
                 href="/work-with-us"
                 className="rounded-md bg-sky px-6 py-3 text-sm font-medium text-white transition hover:bg-sky-light"
@@ -93,105 +114,99 @@ export default function HomePage() {
               </Link>
             </div>
 
-            {/* Compact hero graphic for mobile — sits below the CTAs */}
-            <div className="mt-10 max-w-xs lg:hidden" aria-hidden="true">
+            {/* Compact hero graphic for mobile sits below the CTAs. */}
+            <div className="mt-10 w-full max-w-xs lg:hidden">
               <HeroGraphic />
             </div>
           </div>
 
-          <div className="hidden lg:block" aria-hidden="true">
+          <div className="hidden min-w-0 lg:block">
             <HeroGraphic />
           </div>
         </div>
       </section>
 
-      {/* Credibility strip */}
-      <section className="border-y border-mid/10 bg-paper">
-        <div className="mx-auto max-w-6xl px-6 py-4">
-          <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center font-mono text-[11px] font-semibold uppercase tracking-widest text-mid">
+      {/* Operator positioning */}
+      <section className="border-y border-ink/10 bg-paper">
+        <div className="mx-auto max-w-6xl px-6 py-3">
+          <p className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-center font-mono text-[9px] font-medium uppercase tracking-[0.14em] text-mid">
             <span>Built by operators</span>
-            <span aria-hidden className="text-mid/40">
-              •
-            </span>
+            <span aria-hidden className="text-sky/55">•</span>
             <span>Designed around real workflows</span>
-            <span aria-hidden className="text-mid/40">
-              •
-            </span>
+            <span aria-hidden className="text-sky/55">•</span>
             <span>Architecture before automation</span>
           </p>
         </div>
       </section>
 
-      {/* Logo marquee — earlier work, not systems-architecture clients */}
       <LogoMarquee />
 
       {/* Who this is for */}
-      <section className="border-b border-mid/10 bg-white">
-        <div className="mx-auto max-w-6xl px-6 py-16">
-          <h2 className="font-display text-2xl font-semibold text-ink">Who this is for</h2>
-          <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-3">
+      <section className="border-b border-ink/10 bg-white">
+        <div className="mx-auto max-w-6xl px-6 py-20">
+          <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
             <div>
-              <h3 className="font-display text-base font-semibold text-ink">
-                Scaling past spreadsheets
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-mid">
-                Your crews, properties, customers, and reporting have outgrown disconnected tools
-                and manual coordination.
-              </p>
+              <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-accent">
+                Who this is for
+              </span>
+              <h2 className="mt-3 max-w-md font-display text-3xl font-semibold leading-tight text-ink">
+                Businesses where operational friction is already costing real money.
+              </h2>
             </div>
-            <div>
-              <h3 className="font-display text-base font-semibold text-ink">
-                Removing owner dependence
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-mid">
-                The business functions while you are present and stalls when decisions,
-                information, or approvals cannot move without you.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-display text-base font-semibold text-ink">
-                Preparing to buy or sell
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-mid">
-                You need operational visibility, transferable systems, reliable reporting, and
-                cleaner transaction execution.
-              </p>
+            <div className="grid gap-px overflow-hidden rounded-xl border border-ink/10 bg-ink/10 sm:grid-cols-3">
+              {[
+                ["01", "Complex delivery", "Crews, properties, customers, and finance must stay aligned across every job."],
+                ["02", "Founder bottlenecks", "The business slows whenever an approval or decision reaches the owner."],
+                ["03", "Growth or transition", "You need clearer operations before scaling, acquiring, financing, or selling."],
+              ].map(([number, title, description]) => (
+                <div key={number} className="bg-paper p-6">
+                  <span className="font-mono text-[10px] font-semibold text-sky">{number}</span>
+                  <h3 className="mt-8 font-display text-base font-semibold text-ink">{title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-mid">{description}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* The operating leverage stack */}
-      <section className="border-b border-mid/10 bg-sky/5">
-        <div className="mx-auto max-w-6xl px-6 py-16">
-          <h2 className="font-display text-2xl font-semibold text-ink">
-            The operating leverage stack
-          </h2>
-          <p className="mt-2 max-w-xl text-sm leading-relaxed text-mid">
-            Whatever&apos;s slowing you down — reporting, headcount, tech debt, deal terms — it
-            runs through one of these four layers.
-          </p>
-          <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {Object.entries(clusterLabels).map(([slug, label]) => (
+      {/* Operating priorities */}
+      <section className="border-b border-ink/10 bg-[#f1ede7]">
+        <div className="mx-auto max-w-6xl px-6 py-20">
+          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-sky">
+            What we fix
+          </span>
+          <div className="mt-3 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+            <h2 className="max-w-xl font-display text-3xl font-semibold leading-tight text-ink">
+              Four operating problems that limit growth and enterprise value.
+            </h2>
+            <p className="max-w-md text-sm leading-relaxed text-mid">
+              We start with the costly handoff, reporting gap, or owner bottleneck—not a generic technology category.
+            </p>
+          </div>
+          <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {operatingPriorities.map((priority) => (
               <Link
-                key={slug}
-                href={`/learn/${slug}`}
-                className="rounded-lg border border-mid/15 bg-white p-6 transition hover:border-sky/40"
+                key={priority.slug}
+                href={`/learn/${priority.slug}`}
+                className="group rounded-xl border border-ink/10 bg-white/90 p-7 shadow-[0_16px_45px_-38px_rgba(11,21,37,0.5)] transition duration-300 hover:-translate-y-1 hover:border-sky/35 hover:shadow-[0_22px_55px_-35px_rgba(27,95,204,0.35)]"
               >
-                <span
-                  className={`inline-block h-2.5 w-2.5 rounded-full ${clusterColors[slug]?.dot}`}
-                />
-                <h3 className="mt-3 font-display text-lg font-semibold text-ink">{label}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-mid">
-                  {leverageStackDescriptions[slug]}
-                </p>
+                <div className="flex items-start justify-between gap-4">
+                  <span className="font-mono text-[10px] font-semibold text-sky">{priority.number}</span>
+                  <span className="text-sm text-sky transition-transform group-hover:translate-x-1" aria-hidden>→</span>
+                </div>
+                <h3 className="mt-6 font-display text-xl font-semibold text-ink">{priority.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-mid">{priority.problem}</p>
+                <div className="mt-5 border-t border-ink/10 pt-4">
+                  <p className="text-sm font-medium leading-relaxed text-ink">{priority.outcome}</p>
+                </div>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Featured build — proof of the methodology */}
+      {/* Featured build: proof of the methodology. */}
       {featured && (
         <section className="relative overflow-hidden bg-ink">
           <div
@@ -265,7 +280,7 @@ export default function HomePage() {
               href={`/builds/${featured.frontmatter.slug}`}
               className="mt-8 inline-block text-sm font-medium text-sky-light hover:underline"
             >
-              Read the full build →
+              Read the full build &rarr;
             </Link>
           </div>
         </section>
@@ -277,7 +292,7 @@ export default function HomePage() {
           <div className="flex items-center justify-between">
             <h2 className="font-display text-2xl font-semibold text-ink">Latest from Learn</h2>
             <Link href="/learn" className="text-sm font-medium text-sky hover:underline">
-              View all →
+              View all &rarr;
             </Link>
           </div>
           <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
