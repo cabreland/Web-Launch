@@ -4,27 +4,27 @@ import { CtaBlock } from "@/components/ui/CtaBlock";
 export const metadata: Metadata = {
   title: "Work With Us",
   description:
-    "Custom builds, an implementer community, and marketing services — how to work with WebLaunch.",
+    "Diagnose and remove the operational bottlenecks limiting cash, revenue, delivery, and owner independence.",
 };
 
 const services = [
   {
-    name: "Custom Build",
+    name: "Operational Bottleneck Diagnostic",
     status: "Available",
     description:
-      "AI automation, systems integration, and software builds scoped around a specific operational bottleneck — not a generic package.",
+      "We map what happens now, identify the root constraint, quantify its impact, and define the operating system required to remove it.",
   },
   {
-    name: "Community",
+    name: "Website-to-Revenue System",
     status: "Available",
     description:
-      "A Skool community for founders and operators implementing AI automation and business systems in their own companies.",
+      "A high-performing website connected to lead capture, qualification, scheduling, follow-up, CRM, and reporting—not a standalone design project.",
   },
   {
-    name: "Web & Marketing",
-    status: "Coming soon",
+    name: "Operational System Build",
+    status: "Available",
     description:
-      "Full-service web and marketing builds, extending the same operator-led approach to growth and brand.",
+      "We redesign and implement the workflows, integrations, visibility, and accountability needed to improve revenue, cash, delivery, or owner independence.",
   },
 ];
 
@@ -35,16 +35,16 @@ export default function WorkWithUsPage() {
         Work With Us
       </span>
       <h1 className="mt-3 font-display text-4xl font-semibold text-ink">
-        Three ways to work with WebLaunch
+        Start with the constraint
       </h1>
       <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-mid">
-        We&apos;re selective about custom build engagements — the goal is a small number of
-        builds that actually remove a bottleneck, not a volume agency model.
+        Every engagement begins by understanding how the business actually works. Then we
+        design and implement the smallest system capable of creating meaningful operational change.
       </p>
 
       <div className="mt-12 space-y-5">
         {services.map((s) => (
-          <div key={s.name} className="rounded-lg border border-mid/15 bg-white p-6">
+          <div id={`engagement-${services.indexOf(s) + 1}`} key={s.name} className="scroll-mt-28 rounded-lg border border-mid/15 bg-white p-6">
             <div className="flex items-center justify-between">
               <h2 className="font-display text-lg font-semibold text-ink">{s.name}</h2>
               <span
@@ -65,8 +65,8 @@ export default function WorkWithUsPage() {
       <div className="mt-16">
         <CtaBlock
           eyebrow="Get Started"
-          title="Tell us what you're building"
-          description="A short call to see if it's a fit — no sales deck, no pressure."
+          title="Show us where the business gets stuck"
+          description="A focused conversation about the constraint, what it affects, and whether WebLaunch is the right team to remove it."
           primaryLabel="Contact Us"
           primaryHref="/contact"
         />

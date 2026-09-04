@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -7,27 +7,40 @@ import { siteConfig } from "@/lib/site";
 import { organizationJsonLd, websiteJsonLd, jsonLdScript } from "@/lib/seo";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+const spaceGrotesk = localFont({
   variable: "--font-space-grotesk",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  display: "swap",
+  src: [
+    { path: "./fonts/space-grotesk-500.ttf", weight: "500", style: "normal" },
+    { path: "./fonts/space-grotesk-600.ttf", weight: "600", style: "normal" },
+    { path: "./fonts/space-grotesk-700.ttf", weight: "700", style: "normal" },
+  ],
 });
 
-const inter = Inter({
+const inter = localFont({
   variable: "--font-inter",
-  subsets: ["latin"],
+  display: "swap",
+  src: [
+    { path: "./fonts/inter-400.ttf", weight: "400", style: "normal" },
+    { path: "./fonts/inter-500.ttf", weight: "500", style: "normal" },
+    { path: "./fonts/inter-600.ttf", weight: "600", style: "normal" },
+    { path: "./fonts/inter-700.ttf", weight: "700", style: "normal" },
+  ],
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const jetbrainsMono = localFont({
   variable: "--font-jetbrains-mono",
-  subsets: ["latin"],
-  weight: ["500", "600"],
+  display: "swap",
+  src: [
+    { path: "./fonts/jetbrains-mono-500.ttf", weight: "500", style: "normal" },
+    { path: "./fonts/jetbrains-mono-600.ttf", weight: "600", style: "normal" },
+  ],
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — Operator-Led AI Automation & Business Systems`,
+    default: `${siteConfig.name} — Operational Systems for Founder-Led Businesses`,
     template: `%s · ${siteConfig.name}`,
   },
   description: siteConfig.description,

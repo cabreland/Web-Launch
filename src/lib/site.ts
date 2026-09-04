@@ -3,18 +3,18 @@ export const siteConfig = {
   shortName: "WebLaunch",
   url: "https://weblaunch.io",
   description:
-    "Practitioner-led guides on AI automation, business operating systems, acquisition entrepreneurship, and enterprise-value creation — from a team that has built, bought, operated, and exited.",
+    "WebLaunch finds the bottlenecks slowing cash, revenue, delivery, and decisions—then builds the operational systems businesses need to operate, scale, and transfer.",
   twitter: "@weblaunchio",
 } as const;
 
 export type NavItem = { label: string; href: string };
 
 export const primaryNav: NavItem[] = [
-  { label: "Learn", href: "/learn" },
-  { label: "Builds", href: "/builds" },
-  { label: "Platforms", href: "/platforms" },
+  { label: "What We Do", href: "/#what-we-do" },
+  { label: "Client Results", href: "/builds" },
   { label: "Industries", href: "/industries" },
-  { label: "Community", href: "/community" },
+  { label: "Insights", href: "/learn" },
+  { label: "About", href: "/about" },
   { label: "Work With Us", href: "/work-with-us" },
 ];
 
@@ -32,8 +32,7 @@ export const footerNav: { title: string; items: NavItem[] }[] = [
     title: "Company",
     items: [
       { label: "About", href: "/about" },
-      { label: "Builds", href: "/builds" },
-      { label: "Community", href: "/community" },
+      { label: "Client Results", href: "/builds" },
       { label: "Work With Us", href: "/work-with-us" },
     ],
   },

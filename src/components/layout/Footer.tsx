@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
-import { NewsletterForm } from "@/components/ui/NewsletterForm";
 import { footerNav, siteConfig } from "@/lib/site";
 
 export function Footer() {
@@ -13,12 +12,12 @@ export function Footer() {
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-paper/60">
               {siteConfig.description}
             </p>
-            <div className="mt-6">
-              <p className="mb-2 font-mono text-[11px] font-semibold uppercase tracking-widest text-sky-light">
-                Subscribe
-              </p>
-              <NewsletterForm variant="dark" />
-            </div>
+            <Link
+              href="/work-with-us"
+              className="mt-7 inline-flex min-h-11 items-center border border-paper/20 px-4 font-mono text-[9px] font-semibold uppercase tracking-[0.14em] text-paper transition-colors hover:border-sky-light hover:text-sky-light"
+            >
+              Consult an operator &rarr;
+            </Link>
           </div>
 
           {footerNav.map((col) => (
